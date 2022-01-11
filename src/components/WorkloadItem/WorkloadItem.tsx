@@ -10,28 +10,31 @@ import React from "react";
 
 export const WorkloadItem: React.FC<{ props: WorkloadItemInterface }> =
   React.memo(({ props }) => {
-    let [isCompleted, setIfCompleted] = useState<boolean>(false);
-    let [status , setStatus] = useState<string>(props.status)
+    let [isCompleted, setIfCompleted] = useState<boolean>(false); //this will be used solely for display purposes.
+    let [status, setStatus] = useState<string>(props.status); //this will be used solely for display purposes.
     var process: NodeJS.Timeout;
     let sub: Subject<any>;
 
     useEffect(() => {
-       sub  =  new Subject();
-      controller.observeWorkloadItem(sub)
+      sub = new Subject();
+      controller.observeWorkloadItem(sub);
 
+      //This will be how a workload would be mimiced.
       process = setTimeout(() => {
         setIfCompleted(true);
         setStatus("Completed");
         sub.next({
-          event : "Completed",
-          isCompleted : true,
-          id : props.id
-        })
+          event: "Completed",
+          isCompleted: true,
+          id: props.id,
+        });
       }, props.complexity * 1000);
     }, []);
+
+    //To be called when a wokload has been cancelled by the user.
     const CancelProcess = () => {
       setIfCompleted(true);
-      
+
       clearTimeout(process);
       setStatus("Cancelled");
       sub.next({
