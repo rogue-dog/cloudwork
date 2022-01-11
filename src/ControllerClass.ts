@@ -2,10 +2,16 @@ import { Observer, Subject, Subscription } from "rxjs";
 import ReturnData from "./Backend/WorkloadService";
 import { WorkloadItemInterface } from "./components/interfaces/WorkloadItemInterface";
 
+// The Controller class will be the one handling state changes behind the scene. It would act as an intermediary between 
+// Main App and individual workloads.
+
+// Each workload will be observed by its observers and any change that might occur in workloads would be recorded
+// and merged into the main data.
+
 class Controller {
   subject: Subject<unknown>;
-  private workload_map : { [id: string]: WorkloadItemInterface };
-  private observers :Subscription[]
+  private workload_map : { [id: string]: WorkloadItemInterface }; //this is the mapping of all the workloads user has ever had
+  private observers :Subscription[] //These will observe individual workload and report the changes so that workload_map can be updated
 
   constructor() {
     this.subject = new Subject();
@@ -24,7 +30,7 @@ class Controller {
   }
 
   public sendWorkloadData() {
-    var serializedData: WorkloadItemInterface[] = [];
+    var serializedData: WorkloadItemInterface[] = []; 
     var keys = Object.keys(this.workload_map
       );
     for (var key of keys) {

@@ -4,6 +4,9 @@ import { WorkloadItemInterface } from "../interfaces/WorkloadItemInterface";
 import {v4 as uuid4} from "uuid";
 import "./WorkloadItemForm.css";
 
+//This is the form for adding a new workload.
+// This component will call controller class' addWorkload function where a workload would be added to the main data centre
+
 export const WorkloadItemForm = () => {
     let [complexity, setComplexity] = useState<number>(10);
     let [name,setName] =useState<string>("");

@@ -1,5 +1,7 @@
 import { WorkloadItemInterface } from "../components/interfaces/WorkloadItemInterface";
-import {v4 as uuid4} from "uuid"
+import {v4 as uuid4} from "uuid";
+
+//A pretend backend for the app.
 
 
 var a: WorkloadItemInterface = {
