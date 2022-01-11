@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useEffect, useState } from "react";
+import { WorkloadItemInterface } from "./components/interfaces/WorkloadItemInterface";
+import { controller } from "./ControllerClass";
+import"./App.css";
+import { WorkloadItem } from "./components/WorkloadItem/WorkloadItem";
+import { Observer } from "rxjs";
+import { WorkloadItemForm } from "./components/WorkloadItemForm/WorkloadItemForm";
 
-function App() {
+
+const App = React.memo( () =>{
+  var [processes, setProcesses] = useState<WorkloadItemInterface[]>();
+
+  useEffect(() => {
+    controller.subscribeToController({
+      next : (v : WorkloadItemInterface[])=>{
+
+        setProcesses(v);
+      }
+    } as Observer<unknown>);
+    
+    controller.sendWorkloadData();
+   
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+      <h1 className="cloudwork-heading">
+        <b>CloudWork</b>
+      </h1>
+      <hr className="horizontal-line" />
+      <h2 className="workload-heading">Workloads</h2>
+      <div className="workload-container">
+        <div className="workloadItem-container">
+          {processes ? (
+            processes.map((el: WorkloadItemInterface) => {
+              return <WorkloadItem props={el} key={el.id} />;
+            })
+          ) : (
+            <p>Loading</p>
+          )}
+        </div>
+        <WorkloadItemForm />
+      </div>
     </div>
   );
-}
+})
 
 export default App;

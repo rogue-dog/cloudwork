@@ -1,0 +1,40 @@
+.item-container{
+    border: 2px solid rgb(149, 74, 202);
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.workload-name-container{
+    margin-right: 2em;
+    color :rgb(149, 74, 202);
+     flex-grow: 1;
+    margin-left: 0.5em;
+}
+.status-container{
+    color :rgb(149, 74, 202);
+    text-align: end;
+    font-weight: bold;
+}
+.workload-status-container{
+    display: flex;
+    flex-grow: 1;
+    margin-right: 2em;
+    flex-direction: column;
+    justify-content: center;   
+}
+.pending-status-container{
+    display: flex;
+    justify-content: space-between;
+}
+.pending-time-container{
+    color:rgb(149, 74, 202);
+    font-weight: bold;
+}
+.cancel-button{
+    background-color: rgb(207, 179, 228);
+    color: rgb(130, 29, 202);
+    font-weight: bold;
+    font-size: 1em;
+    padding: 0.3em;
+}

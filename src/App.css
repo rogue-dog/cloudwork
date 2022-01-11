@@ -1,38 +1,29 @@
-.App {
-  text-align: center;
+.main-container {
+ margin: 3em;
+ width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.workload-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.cloudwork-heading {
+  color: rgb(149, 74, 202);
+  margin-left: 11em;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.horizontal-line {
+  height: 0.1em;
+  width: 70%;
+  background-color: rgb(149, 74, 202);
+}
+.workload-heading{
+  color: rgb(149, 74, 202);
+  margin-left: 15em;
+}
+.workloadItem-container{
+  margin-right: 4em;
+ 
+width:40em;
 }
